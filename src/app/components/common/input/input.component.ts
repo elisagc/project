@@ -1,0 +1,96 @@
+import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { Router } from "@angular/router";
+import { ApiGameService } from "../../../services/api-game-service.service";
+import { LogService } from "../../../services/log.service";
+@Component({
+  selector: "app-input",
+  templateUrl: "./input.component.html",
+  styleUrls: ["./input.component.scss"]
+})
+export class InputComponent implements OnInit {
+  gameList = [] as any;
+  gameSelected = "";
+  categories = [] as any;
+
+  @Input() size: string;
+  @Output() ifHaveText: EventEmitter<boolean> = new EventEmitter();
+  @Output() ifFocus: EventEmitter<boolean> = new EventEmitter();
+
+  text = "";
+  haveText = false;
+  isFocus = false;
+  inputRadius = true;
+  logged: boolean;
+  constructor(
+    private apiGameService: ApiGameService,
+    private log: LogService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    // cargo todas las categorias al iniciar el componente
+
+    this.islogged();
+    this.apiGameService
+      .getGameCategories()
+      .then(gameCategories => (this.categories = gameCategories));
+  }
+
+  islogged() {
+    this.logged = this.log.getLog();
+  }
+
+  getBoardGameList(event: Event) {
+    const game = event.target as HTMLInputElement;
+    this.apiGameService.getBoardGamesList(game.value).then(list => {
+      this.gameList = list;
+      this.text === "" ? (this.inputRadius = true) : (this.inputRadius = false);
+    });
+  }
+
+  selectGame(game) {
+    this.gameSelected = game;
+    this.getCategoriesGame(this.gameSelected);
+    this.apiGameService.setGame(this.gameSelected); // guardo el juego elegido en el servicio
+  }
+
+  // recibe el juego, recorre cada categoria del juego que es una id
+  // recorre las categorías cargadas de la api con su id y nombre
+  // compara por id y guarda el objeto con el nombre
+  getCategoriesGame(game) {
+    const { categories } = this.categories;
+    const names = [];
+    game.categories.forEach(gameCategory => {
+      names.push(categories.find(category => category.id === gameCategory.id));
+    });
+
+    this.apiGameService.setCategories(names); // guardo las categorias del juego en el servicio
+
+    console.log(
+      "está logueado antes de ir a la página de musica?",
+      this.log.getLog()
+    );
+
+    if (this.log.getLog()) {
+      console.log("voy a music");
+      this.router.navigateByUrl("game-music");
+    } else {
+      console.log("voy a login");
+      this.router.navigateByUrl("/login");
+    }
+  }
+
+  onText() {
+    this.text === "" ? (this.haveText = false) : (this.haveText = true);
+    this.ifHaveText.emit(this.haveText);
+  }
+
+  onFocus() {
+    this.isFocus = true;
+    this.ifFocus.emit(this.isFocus);
+  }
+
+  signOut() {
+    this.log.signOut();
+  }
+}

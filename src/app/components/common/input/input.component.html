@@ -1,0 +1,27 @@
+<div>
+  <div class="input" [ngClass]="{ smallInput: size == 'small' }">
+    <input
+      type="text"
+      (input)="getBoardGameList($event)"
+      [(ngModel)]="text"
+      (ngModelChange)="onText()"
+      [ngClass]="inputRadius ? 'radioOff' : 'radioOn'"
+      (focus)="onFocus()"
+    />
+  </div>
+  <div class="list" [ngClass]="size">
+    <ul>
+      <li (click)="selectGame(game)" *ngFor="let game of gameList.games">
+        <span>{{ game.name }}</span>
+        <span>{{ game.year_published }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- <div *ngIf="logged">
+  <button class="btn btn-primary" (click)="signOut()">
+    Sign Out
+  </button>
+</div>
+ -->

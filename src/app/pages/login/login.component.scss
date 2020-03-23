@@ -1,0 +1,33 @@
+.container-search {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1em;
+
+  &--box {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    justify-content: center;
+    transition: all 0.6s ease;
+  }
+}
+
+h4 {
+  text-align: center;
+  color: white;
+  font-size: 1.2em;
+  text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.623);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 480px) {
+  h4 {
+    font-size: 1em;
+  }
+}
+
+.boxUp {
+  transform: translateY(-30%);
+}

@@ -1,0 +1,85 @@
+.input {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 100%;
+  padding: 15px 0 15px 12px;
+  border: none;
+  background-image: url("../../../../assets/search.svg");
+  background-repeat: no-repeat;
+  background-position: 97%;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.9em;
+  font-weight: bold;
+  outline: none;
+}
+
+@media (max-width: 480px) {
+  input {
+    width: 80%;
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+}
+.smallInput {
+  width: 250px;
+}
+.small {
+  width: 250px;
+}
+.big {
+  width: 100%;
+  max-width: 450px;
+}
+
+ul {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-top: 10px;
+  position: relative;
+  bottom: 10px;
+  font-size: 0.9em;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: white;
+    padding: 12px;
+    border-bottom: 1px solid rgb(180, 169, 169);
+
+    &:hover {
+      background-color: rgba(16, 209, 119, 0.829);
+      color: white;
+    }
+  }
+
+  li:first-child {
+    border-top: 1px solid rgb(180, 169, 169);
+  }
+  li:last-child {
+    border-radius: 0 0 23px 23px;
+  }
+}
+
+@media (max-width: 480px) {
+  ul {
+    width: 80%;
+  }
+}
+
+.radioOn {
+  border-radius: 23px 23px 0 0;
+}
+
+.radioOff {
+  border-radius: 23px;
+}
