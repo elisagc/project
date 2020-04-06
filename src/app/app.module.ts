@@ -12,18 +12,26 @@ import { InputComponent } from "./components/common/input/input.component";
 import {
   SocialLoginModule,
   AuthServiceConfig,
-  GoogleLoginProvider
+  GoogleLoginProvider,
+  LoginOpt
 } from "angularx-social-login";
-import { OauthComponent } from "./components/oauth/oauth.component";
-import { LoginComponent } from "./pages/login/login.component";
-import { PolicyComponent } from './pages/policy/policy.component';
+import { PolicyComponent } from "./pages/policy/policy.component";
+import { HeaderComponent } from "./components/common/header/header.component";
+import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { environment } from "../environments/environment";
 
-//OAUTH
+// OAUTH
+
+const googleLoginOptions: LoginOpt = {
+  scope: "profile email https://www.googleapis.com/auth/youtube"
+};
+
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
     provider: new GoogleLoginProvider(
-      "979235382039-qji5v0q632oad7l86d9sdq9mbtdthbfh.apps.googleusercontent.com"
+      environment.googleIdClient,
+      googleLoginOptions
     )
   }
 ]);
@@ -31,7 +39,6 @@ const config = new AuthServiceConfig([
 export function provideConfig() {
   return config;
 }
-//OAUTH
 
 @NgModule({
   declarations: [
@@ -41,9 +48,8 @@ export function provideConfig() {
     FooterComponent,
     TitleComponent,
     InputComponent,
-    OauthComponent,
-    LoginComponent,
-    PolicyComponent
+    PolicyComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -51,20 +57,17 @@ export function provideConfig() {
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-
-    //OAUTH
     SocialLoginModule
-    //OAUTH
   ],
 
-  //OAUTH
+  // OAUTH
   providers: [
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
-  //OAUTH
 
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,8 @@
-.input {
+input {
   display: flex;
   justify-content: center;
-}
-
-input {
   width: 100%;
-  padding: 15px 0 15px 12px;
+  padding: 15px 20px;
   border: none;
   background-image: url("../../../../assets/search.svg");
   background-repeat: no-repeat;
@@ -16,30 +13,12 @@ input {
   outline: none;
 }
 
-@media (max-width: 480px) {
-  input {
-    width: 80%;
-  }
-}
-
 .list {
-  display: flex;
-  justify-content: center;
   position: absolute;
-}
-.smallInput {
-  width: 250px;
-}
-.small {
-  width: 250px;
-}
-.big {
   width: 100%;
-  max-width: 450px;
 }
 
 ul {
-  width: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -53,7 +32,7 @@ ul {
     justify-content: space-between;
     cursor: pointer;
     background-color: white;
-    padding: 12px;
+    padding: 12px 20px;
     border-bottom: 1px solid rgb(180, 169, 169);
 
     &:hover {
@@ -67,12 +46,6 @@ ul {
   }
   li:last-child {
     border-radius: 0 0 23px 23px;
-  }
-}
-
-@media (max-width: 480px) {
-  ul {
-    width: 80%;
   }
 }
 

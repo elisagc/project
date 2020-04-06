@@ -1,9 +1,4 @@
 <div class="container__music">
-  <nav>
-    <app-title></app-title>
-    <app-input [size]="'small'" (click)="chargeDataApi()"></app-input>
-  </nav>
-
   <div class="white">
     <div class="item item-1">
       <p>{{ game.name }} ({{ game.year_published }})</p>
@@ -28,24 +23,28 @@
           <!--  <p *ngFor="let song of music.items">{{ song.snnipet.description }}</p> -->
           <table>
             <tr>
-              <td>Categories</td>
+              <td class="first-column">Categories</td>
               <td>
                 <span *ngFor="let category of categories"
-                  >{{ category.name }}&nbsp;</span
-                >
+                  >{{ category.name }},
+                </span>
               </td>
             </tr>
             <tr>
-              <td>Number of players</td>
-              <td>{{ game.min_players }} {{ game.max_players }}</td>
+              <td class="first-column">Players</td>
+              <td>{{ game.min_players }} to {{ game.max_players }} players</td>
             </tr>
             <tr>
-              <td>Time</td>
-              <td>{{ game.min_playtime }} {{ game.max_playtime }}</td>
+              <td class="first-column">Time</td>
+              <td>{{ game.min_playtime }} - {{ game.max_playtime }} minutes</td>
             </tr>
             <tr>
-              <td>Valoration</td>
-              <td>{{ game.average_user_rating }}</td>
+              <td class="first-column">Age</td>
+              <td>+{{ game.min_age }} years</td>
+            </tr>
+            <tr>
+              <td class="first-column">Valoration</td>
+              <td>{{ game.average_user_rating | number: "1.0-2" }} / 5</td>
             </tr>
           </table>
         </div>
@@ -54,7 +53,7 @@
         <div class="item item-3">
           <!--  <img [src]="game.image_url" /> <img src="../../../assets/j.jpg" /> -->
           <div class="item-3-img"><img [src]="game.image_url" /></div>
-          <div class="item-3-info">
+          <!--<div class="item-3-info">
             <table>
               <tr>
                 <td>Categories</td>
@@ -77,7 +76,7 @@
                 <td>{{ game.average_user_rating }}</td>
               </tr>
             </table>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>

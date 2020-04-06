@@ -4,6 +4,7 @@
   justify-content: center;
   font-family: "Quicksand", sans-serif;
   font-size: 1em;
+  padding: 0 20px;
 
   &--box {
     display: flex;
@@ -17,7 +18,8 @@
 h4 {
   text-align: center;
   color: white;
-  font-size: 1.2em;
+  font-size: 1.3em;
+  font-weight: 400;
   text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.623);
   margin-bottom: 20px;
 }

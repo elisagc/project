@@ -1,0 +1,39 @@
+<header>
+  <div class="title">
+    <!--<p>Board Games Music</p>-->
+  </div>
+  <div class="login-container">
+    <ng-container *ngIf="user">
+      <div class="user-info">
+        <p class="user-name">{{ user.name }}</p>
+        <img class="user-pic" src="{{ user.photoUrl }}" alt="" />
+      </div>
+      <a class="button" (click)="signOut()">Log out</a>
+    </ng-container>
+
+    <ng-container *ngIf="!user">
+      <div class="user-empty">
+        <p class="user-name">You are not connected</p>
+      </div>
+      <a class="button" (click)="modalToggle()">Log in</a>
+    </ng-container>
+  </div>
+</header>
+
+<div *ngIf="isModalOpen" class="overlay" (click)="modalToggle()">
+  <div id="loginModal" class="customModal">
+    <h2>Welcome to Board Games Music!</h2>
+    <p>Log in with Google to start playing music</p>
+
+    <div class="google-btn" (click)="signInWithGoogle()">
+      <div class="google-icon-wrapper">
+        <img class="google-icon" src="assets/google_logo.svg" />
+      </div>
+      <p class="btn-text"><b>Sign in with Google</b></p>
+    </div>
+
+    <p class="little-text">
+      <a routerLink="/privacy-policy">Read our Privacy Policy</a>
+    </p>
+  </div>
+</div>

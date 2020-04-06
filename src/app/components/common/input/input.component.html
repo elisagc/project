@@ -1,5 +1,5 @@
-<div>
-  <div class="input" [ngClass]="{ smallInput: size == 'small' }">
+<div class="input-container">
+  <div class="input">
     <input
       type="text"
       (input)="getBoardGameList($event)"
@@ -9,7 +9,7 @@
       (focus)="onFocus()"
     />
   </div>
-  <div class="list" [ngClass]="size">
+  <div *ngIf="isFocus" class="list">
     <ul>
       <li (click)="selectGame(game)" *ngFor="let game of gameList.games">
         <span>{{ game.name }}</span>
@@ -18,10 +18,3 @@
     </ul>
   </div>
 </div>
-
-<!-- <div *ngIf="logged">
-  <button class="btn btn-primary" (click)="signOut()">
-    Sign Out
-  </button>
-</div>
- -->

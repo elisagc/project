@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { ApiGameService } from "../../../services/api-game-service.service";
-import { LogService } from "../../../services/log.service";
+
 @Component({
   selector: "app-input",
   templateUrl: "./input.component.html",
@@ -12,7 +12,6 @@ export class InputComponent implements OnInit {
   gameSelected = "";
   categories = [] as any;
 
-  @Input() size: string;
   @Output() ifHaveText: EventEmitter<boolean> = new EventEmitter();
   @Output() ifFocus: EventEmitter<boolean> = new EventEmitter();
 
@@ -21,23 +20,14 @@ export class InputComponent implements OnInit {
   isFocus = false;
   inputRadius = true;
   logged: boolean;
-  constructor(
-    private apiGameService: ApiGameService,
-    private log: LogService,
-    private router: Router
-  ) {}
+  constructor(private apiGameService: ApiGameService, private router: Router) {}
 
   ngOnInit() {
     // cargo todas las categorias al iniciar el componente
 
-    this.islogged();
     this.apiGameService
       .getGameCategories()
       .then(gameCategories => (this.categories = gameCategories));
-  }
-
-  islogged() {
-    this.logged = this.log.getLog();
   }
 
   getBoardGameList(event: Event) {
@@ -65,19 +55,6 @@ export class InputComponent implements OnInit {
     });
 
     this.apiGameService.setCategories(names); // guardo las categorias del juego en el servicio
-
-    console.log(
-      "está logueado antes de ir a la página de musica?",
-      this.log.getLog()
-    );
-
-    if (this.log.getLog()) {
-      console.log("voy a music");
-      this.router.navigateByUrl("game-music");
-    } else {
-      console.log("voy a login");
-      this.router.navigateByUrl("/login");
-    }
   }
 
   onText() {
@@ -88,9 +65,5 @@ export class InputComponent implements OnInit {
   onFocus() {
     this.isFocus = true;
     this.ifFocus.emit(this.isFocus);
-  }
-
-  signOut() {
-    this.log.signOut();
   }
 }

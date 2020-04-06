@@ -1,0 +1,149 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+$white: #fff;
+$google-blue: #4285f4;
+$button-active-blue: #1669f2;
+$transition-all: all 0.2s ease-in;
+
+header {
+  height: 60px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.205);
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 30px;
+
+  .title {
+    display: flex;
+    align-items: center;
+    font-family: DellanaDemo;
+    letter-spacing: 3px;
+    text-shadow: 3px 2px 3px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: $transition-all;
+    &:hover {
+      text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
+    }
+  }
+}
+.login-container {
+  display: flex;
+  align-items: center;
+
+  .user-info,
+  .user-empty {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+
+    .user-name {
+      margin-right: 10px;
+    }
+    .user-pic {
+      height: 35px;
+      border-radius: 17px;
+    }
+  }
+
+  .button {
+    background-color: white;
+    color: black;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border-radius: 17px;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: $transition-all;
+
+    &:hover {
+      background-color: rgba(16, 209, 119, 0.829);
+      color: white;
+    }
+  }
+}
+.overlay {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  justify-content: center;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+
+  .customModal {
+    font-family: Quicksand;
+    text-align: center;
+    box-shadow: none;
+    position: relative;
+    vertical-align: middle;
+    width: 500px;
+    z-index: 100;
+    background-color: white;
+    padding: 30px 30px 30px 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      margin: 0px 0 10px 0;
+    }
+
+    p {
+      margin-bottom: 30px;
+    }
+    .little-text {
+      margin: 20px 0px 0px 0px;
+      a {
+        color: lightgray;
+        transition: $transition-all;
+        &:hover {
+          color: grey;
+        }
+      }
+    }
+  }
+}
+
+// Google Button
+
+.google-btn {
+  cursor: pointer;
+  width: 240px;
+  height: 50px;
+  background-color: $google-blue;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: $transition-all;
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 48px;
+    height: 48px;
+    border-radius: 2px;
+    background-color: $white;
+  }
+  .google-icon {
+    margin-top: 11px;
+    width: 18px;
+    height: 27px;
+  }
+  .btn-text {
+    color: $white;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+    padding-top: 2px;
+    padding: 15px 0px 0px 50px;
+  }
+  &:hover {
+    box-shadow: 0 0 6px $google-blue;
+  }
+  &:active {
+    background: $button-active-blue;
+  }
+}

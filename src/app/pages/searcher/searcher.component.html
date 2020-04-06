@@ -1,15 +1,12 @@
 <section class="container-search">
   <div class="container-search--box" [ngClass]="{ boxUp: focus }">
     <app-title [ifHaveText]="text"></app-title>
-    <h4>
-      Search for a game and get in the mood!
-    </h4>
+
+    <h4>Search for a game and get in the mood!</h4>
 
     <app-input
-      [size]="'big'"
       (ifHaveText)="ifTextReceived($event)"
       (ifFocus)="ifFocusReceived($event)"
     ></app-input>
-    <!-- evento que se dispara cuando el emit hace su función -->
   </div>
 </section>

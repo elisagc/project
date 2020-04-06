@@ -7,7 +7,7 @@ import { environment } from "./../../environments/environment";
 })
 export class ApiYoutubeService {
   apiKey: string = environment.youtubeApiId;
-  token: string = "";
+  token = "";
   baseUrlMusic: string =
     "https://www.googleapis.com/youtube/v3/search?" + "&part=" + "snippet";
 

@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./searcher.component.scss"]
 })
 export class SearcherComponent implements OnInit {
-  text: boolean = false;
-  focus: boolean = false;
+  text = false;
+  focus = false;
 
   constructor() {}
 
