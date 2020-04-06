@@ -23,8 +23,6 @@ export class InputComponent implements OnInit {
   constructor(private apiGameService: ApiGameService, private router: Router) {}
 
   ngOnInit() {
-    // cargo todas las categorias al iniciar el componente
-
     this.apiGameService
       .getGameCategories()
       .then(gameCategories => (this.categories = gameCategories));
@@ -41,12 +39,10 @@ export class InputComponent implements OnInit {
   selectGame(game) {
     this.gameSelected = game;
     this.getCategoriesGame(this.gameSelected);
-    this.apiGameService.setGame(this.gameSelected); // guardo el juego elegido en el servicio
+    this.apiGameService.setGame(this.gameSelected);
+    this.router.navigateByUrl("game-music");
   }
 
-  // recibe el juego, recorre cada categoria del juego que es una id
-  // recorre las categorías cargadas de la api con su id y nombre
-  // compara por id y guarda el objeto con el nombre
   getCategoriesGame(game) {
     const { categories } = this.categories;
     const names = [];
@@ -54,7 +50,7 @@ export class InputComponent implements OnInit {
       names.push(categories.find(category => category.id === gameCategory.id));
     });
 
-    this.apiGameService.setCategories(names); // guardo las categorias del juego en el servicio
+    this.apiGameService.setCategories(names);
   }
 
   onText() {
