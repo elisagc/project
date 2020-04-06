@@ -34,8 +34,6 @@ export class MusicComponent implements OnInit {
         this.music = videos;
         this.videoIds();
       });
-
-    console.log("MUSIC", this.music);
   }
 
   videoIds() {
@@ -45,7 +43,6 @@ export class MusicComponent implements OnInit {
         ? this.idVideos.push(video.id.videoId)
         : null
     );
-    console.log(this.idVideos);
   }
 
   iframe() {

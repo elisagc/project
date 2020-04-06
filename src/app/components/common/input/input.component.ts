@@ -49,7 +49,6 @@ export class InputComponent implements OnInit {
     game.categories.forEach(gameCategory => {
       names.push(categories.find(category => category.id === gameCategory.id));
     });
-
     this.apiGameService.setCategories(names);
   }
 

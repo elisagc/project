@@ -4,6 +4,7 @@ import {
   GoogleLoginProvider,
   SocialUser
 } from "angularx-social-login";
+import { UserService } from "../../../services/user.service";
 
 @Component({
   selector: "app-header",
@@ -14,10 +15,14 @@ export class HeaderComponent implements OnInit {
   user: SocialUser;
   isModalOpen = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.authService.authState.subscribe(user => {
+      this.userService.user = user;
       this.user = user;
     });
   }
