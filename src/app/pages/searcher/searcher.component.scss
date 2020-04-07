@@ -33,3 +33,27 @@ h4 {
 .boxUp {
   transform: translateY(-30%);
 }
+
+@mixin template-search {
+  color: white;
+  font-family: DellanaDemo;
+  letter-spacing: 5px;
+  padding-left: 11px;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.623);
+  transition: all 0.2s ease-in;
+  margin: 0;
+}
+
+.h1Search {
+  @include template-search();
+  text-align: center;
+  font-size: 1.6em;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+  .h1Search {
+    font-size: 1.1em;
+    letter-spacing: 3px;
+  }
+}

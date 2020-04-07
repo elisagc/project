@@ -37,7 +37,6 @@ export const words = [
   "Math",
   "Mature / Adult",
   "Mecha",
-  "Medical",
   "Memory",
   "Miniatures",
   "Modern Warfare",

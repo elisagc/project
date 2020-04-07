@@ -6,18 +6,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./title.component.scss"]
 })
 export class TitleComponent implements OnInit {
-  @Input() ifHaveText;
-  ifInMusicPage = false;
+  constructor() {}
 
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    this.router.url === "/game-music" || this.router.url === "/privacy-policy"
-      ? (this.ifInMusicPage = true)
-      : (this.ifInMusicPage = false);
-  }
-
-  backToHome() {
-    this.router.navigateByUrl("/");
-  }
+  ngOnInit(): void {}
 }

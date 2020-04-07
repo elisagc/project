@@ -21,9 +21,3 @@
     letter-spacing: 3px;
   }
 }
-
-.h1Music {
-  @include template-search();
-  font-size: 1em;
-  cursor: pointer;
-}
