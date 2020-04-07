@@ -1,6 +1,6 @@
 <header>
   <div class="title">
-    <app-title></app-title>
+    <p *ngIf="title" (click)="backHome()">Board Games Music</p>
   </div>
   <div class="login-container">
     <ng-container *ngIf="user">

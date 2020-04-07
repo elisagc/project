@@ -7,7 +7,6 @@ import { AppComponent } from "./app.component";
 import { MusicComponent } from "./pages/music/music.component";
 import { SearcherComponent } from "./pages/searcher/searcher.component";
 import { FooterComponent } from "./components/common/footer/footer.component";
-import { TitleComponent } from "./components/common/title/title.component";
 import { InputComponent } from "./components/common/input/input.component";
 import {
   SocialLoginModule,
@@ -46,7 +45,6 @@ export function provideConfig() {
     SearcherComponent,
     MusicComponent,
     FooterComponent,
-    TitleComponent,
     InputComponent,
     PolicyComponent,
     HeaderComponent

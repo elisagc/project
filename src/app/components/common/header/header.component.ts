@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import {
   AuthService,
   GoogleLoginProvider,
   SocialUser
 } from "angularx-social-login";
 import { UserService } from "../../../services/user.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-header",
@@ -14,10 +15,12 @@ import { UserService } from "../../../services/user.service";
 export class HeaderComponent implements OnInit {
   user: SocialUser;
   isModalOpen = false;
+  @Input() title = false;
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +40,9 @@ export class HeaderComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+  }
+
+  backHome(): void {
+    this.router.navigateByUrl("/");
   }
 }
