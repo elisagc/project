@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-searcher",
@@ -9,7 +10,7 @@ export class SearcherComponent implements OnInit {
   text = false;
   focus = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -19,5 +20,9 @@ export class SearcherComponent implements OnInit {
 
   ifFocusReceived(event) {
     this.focus = event;
+  }
+
+  prueba() {
+    this.router.navigateByUrl("game-music");
   }
 }

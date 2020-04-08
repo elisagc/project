@@ -4,7 +4,7 @@ import {
   GoogleLoginProvider,
   SocialUser
 } from "angularx-social-login";
-import { UserService } from "../../../services/user.service";
+import { CommonService } from "../../../services/common.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -19,15 +19,16 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService,
+    private commonService: CommonService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    console.log("LA RUTA ES: ", this.router.url);
     this.authService.authState.subscribe(user => {
-      this.userService.user = user;
+      this.commonService.user = user;
       this.user = user;
-      this.router.url === "/game-music"
+      this.router.url === "game-music"
         ? (this.title = true)
         : (this.title = false);
     });
@@ -43,6 +44,7 @@ export class HeaderComponent implements OnInit {
 
   signOut(): void {
     this.authService.signOut();
+    this.router.navigateByUrl("/");
   }
 
   backHome(): void {

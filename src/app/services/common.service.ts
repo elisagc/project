@@ -4,7 +4,8 @@ import { SocialUser } from "angularx-social-login";
 @Injectable({
   providedIn: "root"
 })
-export class UserService {
+export class CommonService {
   user: SocialUser;
+  showTitle: boolean = false;
   constructor() {}
 }

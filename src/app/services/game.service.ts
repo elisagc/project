@@ -5,7 +5,7 @@ import { environment } from "../../environments/environment";
 @Injectable({
   providedIn: "root"
 })
-export class ApiGameService {
+export class GameService {
   gameApiId = environment.gameApiId;
   baseUrlGame = "https://www.boardgameatlas.com/api/";
   game: any = {};

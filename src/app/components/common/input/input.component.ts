@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 import { Router } from "@angular/router";
-import { ApiGameService } from "../../../services/api-game-service.service";
+import { GameService } from "../../../services/game.service";
 
 @Component({
   selector: "app-input",
@@ -20,17 +20,17 @@ export class InputComponent implements OnInit {
   isFocus = false;
   inputRadius = true;
   logged: boolean;
-  constructor(private apiGameService: ApiGameService, private router: Router) {}
+  constructor(private gameService: GameService, private router: Router) {}
 
   ngOnInit() {
-    this.apiGameService
+    this.gameService
       .getGameCategories()
       .then(gameCategories => (this.categories = gameCategories));
   }
 
   getBoardGameList(event: Event) {
     const game = event.target as HTMLInputElement;
-    this.apiGameService.getBoardGamesList(game.value).then(list => {
+    this.gameService.getBoardGamesList(game.value).then(list => {
       this.gameList = list;
       this.text === "" ? (this.inputRadius = true) : (this.inputRadius = false);
     });
@@ -39,7 +39,7 @@ export class InputComponent implements OnInit {
   selectGame(game) {
     this.gameSelected = game;
     this.getCategoriesGame(this.gameSelected);
-    this.apiGameService.setGame(this.gameSelected);
+    this.gameService.setGame(this.gameSelected);
     this.router.navigateByUrl("game-music");
   }
 
@@ -49,7 +49,7 @@ export class InputComponent implements OnInit {
     game.categories.forEach(gameCategory => {
       names.push(categories.find(category => category.id === gameCategory.id));
     });
-    this.apiGameService.setCategories(names);
+    this.gameService.setCategories(names);
   }
 
   onText() {

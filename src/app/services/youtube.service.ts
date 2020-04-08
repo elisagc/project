@@ -1,22 +1,22 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "./../../environments/environment";
-import { UserService } from "../services/user.service";
+import { CommonService } from "../services/common.service";
 import { words } from "../excluded-words";
 
 @Injectable({
   providedIn: "root"
 })
-export class ApiYoutubeService {
+export class YoutubeService {
   apiKey: string = environment.youtubeApiId;
   token = "";
   baseUrlMusic: string =
     "https://www.googleapis.com/youtube/v3/search?" + "&part=" + "snippet";
   page: string = "";
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient, private props: CommonService) {}
 
   getVideosForCategories(categories) {
-    this.token = this.userService.user.authToken;
+    this.token = this.props.user.authToken;
     const categoriesSearch = [];
     categories.forEach(category => {
       if (!words.includes(category.name)) {

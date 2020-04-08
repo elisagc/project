@@ -19,8 +19,7 @@
             </div>
           </div>
         </div>
-        <div class="item item-4">
-          <!--  <p *ngFor="let song of music.items">{{ song.snnipet.description }}</p> -->
+        <div class="item item-3">
           <table>
             <tr>
               <td class="first-column">Categories</td>
@@ -47,36 +46,6 @@
               <td>{{ game.average_user_rating | number: "1.0-2" }} / 5</td>
             </tr>
           </table>
-        </div>
-      </div>
-      <div>
-        <div class="item item-3">
-          <!--  <img [src]="game.image_url" /> <img src="../../../assets/j.jpg" /> -->
-          <div class="item-3-img"><img [src]="game.image_url" /></div>
-          <!--<div class="item-3-info">
-            <table>
-              <tr>
-                <td>Categories</td>
-                <td>
-                  <span *ngFor="let category of categories"
-                    >{{ category.name }}&nbsp;</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>Number of players</td>
-                <td>{{ game.min_players }} {{ game.max_players }}</td>
-              </tr>
-              <tr>
-                <td>Time</td>
-                <td>{{ game.min_playtime }} {{ game.max_playtime }}</td>
-              </tr>
-              <tr>
-                <td>Valoration</td>
-                <td>{{ game.average_user_rating }}</td>
-              </tr>
-            </table>
-          </div>-->
         </div>
       </div>
     </div>

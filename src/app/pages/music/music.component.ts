@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { ApiGameService } from "src/app/services/api-game-service.service";
-import { ApiYoutubeService } from "./../../services/api-youtube.service";
+import { GameService } from "src/app/services/game.service";
+import { YoutubeService } from "./../../services/youtube.service";
+import { CommonService } from "./../../services/common.service";
 import { Router } from "@angular/router";
-
 @Component({
   selector: "app-music",
   templateUrl: "./music.component.html",
@@ -16,27 +16,31 @@ export class MusicComponent implements OnInit {
   categories = [];
 
   constructor(
-    private apiGameService: ApiGameService,
-    private apiYoutubeService: ApiYoutubeService,
+    private gameService: GameService,
+    private youtubeService: YoutubeService,
     private sanitizer: DomSanitizer,
+    private commonService: CommonService,
     private route: Router
   ) {}
 
   ngOnInit(): void {
-    this.apiYoutubeService.page = this.route.url;
+    if (
+      this.commonService.user === undefined ||
+      this.commonService.user === null
+    ) {
+      this.route.navigateByUrl("");
+    }
     this.chargeDataApi();
   }
 
   chargeDataApi() {
-    this.game = this.apiGameService.getGame();
-    this.categories = this.apiGameService.getCategories();
+    this.game = this.gameService.getGame();
+    this.categories = this.gameService.getCategories();
 
-    this.apiYoutubeService
-      .getVideosForCategories(this.categories)
-      .then(videos => {
-        this.music = videos;
-        this.videoIds();
-      });
+    this.youtubeService.getVideosForCategories(this.categories).then(videos => {
+      this.music = videos;
+      this.videoIds();
+    });
   }
 
   videoIds() {
