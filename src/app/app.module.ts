@@ -16,7 +16,6 @@ import {
 } from "angularx-social-login";
 import { PolicyComponent } from "./pages/policy/policy.component";
 import { HeaderComponent } from "./components/common/header/header.component";
-import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { environment } from "../environments/environment";
 
 // OAUTH
@@ -63,8 +62,7 @@ export function provideConfig() {
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    }
   ],
 
   bootstrap: [AppComponent]

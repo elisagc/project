@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ApiGameService } from "src/app/services/api-game-service.service";
 import { ApiYoutubeService } from "./../../services/api-youtube.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-music",
@@ -17,10 +18,12 @@ export class MusicComponent implements OnInit {
   constructor(
     private apiGameService: ApiGameService,
     private apiYoutubeService: ApiYoutubeService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
+    this.apiYoutubeService.page = this.route.url;
     this.chargeDataApi();
   }
 

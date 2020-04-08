@@ -15,7 +15,7 @@ import { Router } from "@angular/router";
 export class HeaderComponent implements OnInit {
   user: SocialUser;
   isModalOpen = false;
-  @Input() title = false;
+  title = false;
 
   constructor(
     private authService: AuthService,
@@ -27,6 +27,9 @@ export class HeaderComponent implements OnInit {
     this.authService.authState.subscribe(user => {
       this.userService.user = user;
       this.user = user;
+      this.router.url === "/game-music"
+        ? (this.title = true)
+        : (this.title = false);
     });
   }
 
