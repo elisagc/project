@@ -15,7 +15,7 @@ import { Router } from "@angular/router";
 export class HeaderComponent implements OnInit {
   user: SocialUser;
   isModalOpen = false;
-  title = false;
+  title: boolean;
 
   constructor(
     private authService: AuthService,
@@ -24,13 +24,13 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("LA RUTA ES: ", this.router.url);
+    this.commonService.showTitle.subscribe(
+      showTitle => (this.title = showTitle)
+    );
+    console.log("EN HEADER TITLE", this.title);
     this.authService.authState.subscribe(user => {
       this.commonService.user = user;
       this.user = user;
-      this.router.url === "game-music"
-        ? (this.title = true)
-        : (this.title = false);
     });
   }
 

@@ -20,6 +20,7 @@ export class InputComponent implements OnInit {
   isFocus = false;
   inputRadius = true;
   logged: boolean;
+
   constructor(private gameService: GameService, private router: Router) {}
 
   ngOnInit() {

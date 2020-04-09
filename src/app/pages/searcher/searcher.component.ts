@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
+import { CommonService } from "src/app/services/common.service";
 
 @Component({
   selector: "app-searcher",
@@ -10,9 +11,12 @@ export class SearcherComponent implements OnInit {
   text = false;
   focus = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private commonService: CommonService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.commonService.changeShowTitle(false);
+    console.log(this.commonService.title);
+  }
 
   ifTextReceived(event) {
     this.text = event;
