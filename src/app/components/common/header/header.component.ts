@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
     this.commonService.showTitle.subscribe(
       showTitle => (this.title = showTitle)
     );
-    console.log("EN HEADER TITLE", this.title);
+
     this.authService.authState.subscribe(user => {
       this.commonService.user = user;
       this.user = user;

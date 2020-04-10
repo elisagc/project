@@ -2,18 +2,19 @@
   <div class="white">
     <div class="item item-1">
       <p>{{ game.name }} ({{ game.year_published }})</p>
+      <app-iframe></app-iframe>
     </div>
     <div class="container__music-central grid">
       <div>
         <div class="item item-2">
           <div class="videoWrapper">
-            <iframe
+            <!-- <iframe
               class="iframe"
               [src]="iframe()"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
-            ></iframe>
+            ></iframe> -->
             <div class="item-2-meeple">
               <img src="../../../assets/meeple.svg" />
             </div>

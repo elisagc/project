@@ -17,6 +17,8 @@ import {
 import { PolicyComponent } from "./pages/policy/policy.component";
 import { HeaderComponent } from "./components/common/header/header.component";
 import { environment } from "../environments/environment";
+import { IframeComponent } from "./components/common/iframe/iframe.component";
+import { YtPlayerAngularModule } from "yt-player-angular";
 
 // OAUTH
 
@@ -46,7 +48,8 @@ export function provideConfig() {
     FooterComponent,
     InputComponent,
     PolicyComponent,
-    HeaderComponent
+    HeaderComponent,
+    IframeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ export function provideConfig() {
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    SocialLoginModule
+    SocialLoginModule,
+    YtPlayerAngularModule
   ],
 
   // OAUTH

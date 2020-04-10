@@ -15,7 +15,6 @@ export class SearcherComponent implements OnInit {
 
   ngOnInit() {
     this.commonService.changeShowTitle(false);
-    console.log(this.commonService.title);
   }
 
   ifTextReceived(event) {

@@ -25,7 +25,6 @@ export class MusicComponent implements OnInit {
 
   ngOnInit(): void {
     this.commonService.changeShowTitle(true);
-    console.log(this.commonService.title);
 
     if (
       this.commonService.user === undefined ||

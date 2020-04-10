@@ -23,8 +23,11 @@
     "angularx-social-login": "^2.2.1",
     "material-design-icons": "^3.0.1",
     "mobx": "^5.15.4",
+    "ngx-youtube-player": "^7.1.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "yt-player": "^3.4.3",
+    "yt-player-angular": "^4.0.4",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
