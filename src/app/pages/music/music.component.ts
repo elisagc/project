@@ -12,8 +12,9 @@ import { Router } from "@angular/router";
 export class MusicComponent implements OnInit {
   game: any = {};
   music: any = [];
-  idVideos: string[] = [];
+  idVideos: string[];
   categories = [];
+  imgGame: string;
 
   constructor(
     private gameService: GameService,
@@ -37,6 +38,9 @@ export class MusicComponent implements OnInit {
 
   chargeDataApi() {
     this.game = this.gameService.getGame();
+    this.imgGame = this.game.images["large"];
+
+    console.log("IMAGEN", this.imgGame);
     this.categories = this.gameService.getCategories();
 
     this.youtubeService.getVideosForCategories(this.categories).then(videos => {
@@ -52,11 +56,15 @@ export class MusicComponent implements OnInit {
         ? this.idVideos.push(video.id.videoId)
         : null
     );
+
+    console.log("LOS IDSSSSSSSSSSs", this.idVideos);
+
+    this.youtubeService.videoIds = this.idVideos;
   }
 
-  iframe() {
+  /*   iframe() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(
       "https://www.youtube.com/embed/VIDEO_ID?playlist=" + this.idVideos
     );
-  }
+  } */
 }

@@ -1,0 +1,19 @@
+<div class="media">
+  <div class="media-img">
+    <yt-player
+      [videoId]="idPlaying"
+      [options]="playerOptions"
+      class="media-video"
+    ></yt-player>
+
+    <img src="{{ imgGame }}" />
+  </div>
+  <div class="media-buttons">
+    <button (click)="playSong()">PLAY</button>
+    <button (click)="changeSong('next')">next</button>
+    <button (click)="changeSong('previous')">back</button>
+    <li>
+      <a class="list__link" href=""><i class="fa fa-navicon"></i></a>
+    </li>
+  </div>
+</div>

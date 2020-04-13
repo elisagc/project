@@ -1,29 +1,35 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { YtPlayerService, PlayerOptions } from "yt-player-angular";
+import { YoutubeService } from "src/app/services/youtube.service";
 
 @Component({
-  selector: "app-iframe",
-  templateUrl: "./iframe.component.html",
-  styleUrls: ["./iframe.component.scss"]
+  selector: "app-mplayer",
+  templateUrl: "./mplayer.component.html",
+  styleUrls: ["./mplayer.component.scss"]
 })
-export class IframeComponent implements OnInit {
+export class MplayerComponent implements OnInit {
   constructor(private ytPlayerService: YtPlayerService) {}
-  id = ["fJ9rUzIMcZQ", "sElE_BfQ67s", "m05-kE_tSB8", "zc_RsLOgF0g"];
-  idPlaying = this.id[0];
+  @Input() id: string[];
+  @Input() imgGame: string;
+  idPlaying: string;
   autoplay: boolean = true;
-  countSong = 0;
+  countSong: number = 0;
 
   playerOptions: PlayerOptions = {
     autoplay: false
   };
 
   ngOnInit(): void {
+    this.idPlaying = this.id[0];
+
+    console.log("imgggg", this.imgGame);
     this.ytPlayerService.stateChange$.subscribe(state => {
       state.type === 3 ? this.changeSong("next") : null;
     });
   }
 
   playSong() {
+    console.log("EL ID TIENE", this.id);
     this.ytPlayerService.play();
   }
 

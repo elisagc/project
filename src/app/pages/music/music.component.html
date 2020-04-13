@@ -2,53 +2,52 @@
   <div class="white">
     <div class="item item-1">
       <p>{{ game.name }} ({{ game.year_published }})</p>
-      <app-iframe></app-iframe>
     </div>
-    <div class="container__music-central grid">
-      <div>
-        <div class="item item-2">
-          <div class="videoWrapper">
-            <!-- <iframe
+
+    <div class="container__music-central flex" *ngIf="idVideos">
+      <div class="item item-2">
+        <app-mplayer [id]="idVideos" [imgGame]="imgGame"></app-mplayer>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <iframe
               class="iframe"
               [src]="iframe()"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
             ></iframe> -->
-            <div class="item-2-meeple">
-              <img src="../../../assets/meeple.svg" />
-            </div>
-          </div>
-        </div>
-        <div class="item item-3">
-          <table>
-            <tr>
-              <td class="first-column">Categories</td>
-              <td>
-                <span *ngFor="let category of categories"
-                  >{{ category.name }}
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td class="first-column">Players</td>
-              <td>{{ game.min_players }} to {{ game.max_players }} players</td>
-            </tr>
-            <tr>
-              <td class="first-column">Time</td>
-              <td>{{ game.min_playtime }} - {{ game.max_playtime }} minutes</td>
-            </tr>
-            <tr>
-              <td class="first-column">Age</td>
-              <td>+{{ game.min_age }} years</td>
-            </tr>
-            <tr>
-              <td class="first-column">Valoration</td>
-              <td>{{ game.average_user_rating | number: "1.0-2" }} / 5</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--     <div class="item-2-meeple">
+            <img src="../../../assets/meeple.svg" />
+          </div> -->
+
+<!-- <div class="item item-3">
+        <table>
+          <tr>
+            <td class="first-column">Categories</td>
+            <td>
+              <span *ngFor="let category of categories"
+                >{{ category.name }}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="first-column">Players</td>
+            <td>{{ game.min_players }} to {{ game.max_players }} players</td>
+          </tr>
+          <tr>
+            <td class="first-column">Time</td>
+            <td>{{ game.min_playtime }} - {{ game.max_playtime }} minutes</td>
+          </tr>
+          <tr>
+            <td class="first-column">Age</td>
+            <td>+{{ game.min_age }} years</td>
+          </tr>
+          <tr>
+            <td class="first-column">Valoration</td>
+            <td>{{ game.average_user_rating | number: "1.0-2" }} / 5</td>
+          </tr>
+        </table>
+      </div> -->

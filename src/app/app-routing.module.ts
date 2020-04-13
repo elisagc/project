@@ -7,7 +7,7 @@ import { PolicyComponent } from "./pages/policy/policy.component";
 const routes: Routes = [
   {
     path: "",
-    component: MusicComponent /*SearcherComponent*/
+    component: SearcherComponent
   },
   {
     path: "game-music",

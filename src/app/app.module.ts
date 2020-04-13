@@ -17,8 +17,8 @@ import {
 import { PolicyComponent } from "./pages/policy/policy.component";
 import { HeaderComponent } from "./components/common/header/header.component";
 import { environment } from "../environments/environment";
-import { IframeComponent } from "./components/common/iframe/iframe.component";
 import { YtPlayerAngularModule } from "yt-player-angular";
+import { MplayerComponent } from "./components/common/mplayer/mplayer.component";
 
 // OAUTH
 
@@ -49,7 +49,7 @@ export function provideConfig() {
     InputComponent,
     PolicyComponent,
     HeaderComponent,
-    IframeComponent
+    MplayerComponent
   ],
   imports: [
     BrowserModule,

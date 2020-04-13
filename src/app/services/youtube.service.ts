@@ -13,6 +13,8 @@ export class YoutubeService {
   baseUrlMusic: string =
     "https://www.googleapis.com/youtube/v3/search?" + "&part=" + "snippet";
   page: string = "";
+  videoIds: string[];
+
   constructor(private http: HttpClient, private props: CommonService) {}
 
   getVideosForCategories(categories) {
