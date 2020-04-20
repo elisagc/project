@@ -29,3 +29,6 @@ body {
     linear-gradient(to right, hsl(8, 89%, 61%), #eb3348);
   background-blend-mode: soft-light;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

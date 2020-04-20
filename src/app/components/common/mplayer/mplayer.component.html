@@ -8,12 +8,30 @@
 
     <img src="{{ imgGame }}" />
   </div>
+
+  <h1>{{ timer }}</h1>
+  <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
   <div class="media-buttons">
-    <button (click)="playSong()">PLAY</button>
-    <button (click)="changeSong('next')">next</button>
-    <button (click)="changeSong('previous')">back</button>
-    <li>
-      <a class="list__link" href=""><i class="fa fa-navicon"></i></a>
-    </li>
+    <span class="material-icons" (click)="changeSong('previous')">
+      skip_previous
+    </span>
+    <span class="material-icons" (click)="playSong()">play_circle_outline</span>
+    <!--    <span class="material-icons" (click)="playSong()"
+      >pause_circle_outline</span
+    > -->
+
+    <span class="material-icons" (click)="changeSong('next')">
+      skip_next
+    </span>
+  </div>
+
+  <div class="media-buttons-2">
+    <span class="material-icons">
+      replay
+    </span>
+
+    <span class="material-icons">
+      shuffle
+    </span>
   </div>
 </div>

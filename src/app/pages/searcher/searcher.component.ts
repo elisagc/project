@@ -24,8 +24,4 @@ export class SearcherComponent implements OnInit {
   ifFocusReceived(event) {
     this.focus = event;
   }
-
-  prueba() {
-    this.router.navigateByUrl("game-music");
-  }
 }

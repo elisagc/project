@@ -19,6 +19,9 @@ import { HeaderComponent } from "./components/common/header/header.component";
 import { environment } from "../environments/environment";
 import { YtPlayerAngularModule } from "yt-player-angular";
 import { MplayerComponent } from "./components/common/mplayer/mplayer.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatIconModule } from "@angular/material/icon";
+import { MatSliderModule } from "@angular/material/slider";
 
 // OAUTH
 
@@ -58,7 +61,10 @@ export function provideConfig() {
     HttpClientModule,
     AppRoutingModule,
     SocialLoginModule,
-    YtPlayerAngularModule
+    YtPlayerAngularModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSliderModule
   ],
 
   // OAUTH

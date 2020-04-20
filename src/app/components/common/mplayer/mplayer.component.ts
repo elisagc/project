@@ -8,35 +8,39 @@ import { YoutubeService } from "src/app/services/youtube.service";
   styleUrls: ["./mplayer.component.scss"]
 })
 export class MplayerComponent implements OnInit {
-  constructor(private ytPlayerService: YtPlayerService) {}
-  @Input() id: string[];
+  constructor(
+    private ytPlayerService: YtPlayerService,
+    private youtubeService: YoutubeService
+  ) {}
+  @Input() ids: string[];
   @Input() imgGame: string;
   idPlaying: string;
   autoplay: boolean = true;
   countSong: number = 0;
+  timer;
 
   playerOptions: PlayerOptions = {
     autoplay: false
   };
 
   ngOnInit(): void {
-    this.idPlaying = this.id[0];
+    this.youtubeService.getInfoVideo();
+    this.idPlaying = this.ids[0];
 
-    console.log("imgggg", this.imgGame);
     this.ytPlayerService.stateChange$.subscribe(state => {
+      this.timer = state.payload;
       state.type === 3 ? this.changeSong("next") : null;
     });
   }
 
   playSong() {
-    console.log("EL ID TIENE", this.id);
     this.ytPlayerService.play();
   }
 
   changeSong(id: string) {
     switch (id) {
       case "next":
-        this.countSong !== this.id.length - 1 ? this.countSong++ : null;
+        this.countSong !== this.ids.length - 1 ? this.countSong++ : null;
         console.log("posicion", this.countSong);
         break;
       case "previous":
@@ -50,6 +54,6 @@ export class MplayerComponent implements OnInit {
   }
 
   changeId() {
-    this.idPlaying = this.id[this.countSong];
+    this.idPlaying = this.ids[this.countSong];
   }
 }

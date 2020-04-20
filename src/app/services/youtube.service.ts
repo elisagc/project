@@ -8,17 +8,21 @@ import { words } from "../excluded-words";
   providedIn: "root"
 })
 export class YoutubeService {
-  apiKey: string = environment.youtubeApiId;
   token = "";
   baseUrlMusic: string =
-    "https://www.googleapis.com/youtube/v3/search?" + "&part=" + "snippet";
+    "https://www.googleapis.com/youtube/v3/search?" + "&part=" + "id";
+  baseNewUrlMusic: string =
+    "https://www.youtube.com/list_ajax?style=json&action_get_templist=1&video_ids=";
   page: string = "";
   videoIds: string[];
+  infoVideo;
+  finalVideos;
 
   constructor(private http: HttpClient, private props: CommonService) {}
 
   getVideosForCategories(categories) {
     this.token = this.props.user.authToken;
+    console.log("EL TOKEN ES:", this.token);
     const categoriesSearch = [];
     categories.forEach(category => {
       if (!words.includes(category.name)) {
@@ -44,5 +48,22 @@ export class YoutubeService {
       .get(url, { headers: headerWithToken })
       .toPromise()
       .then(videos => videos);
+  }
+
+  getInfoVideo() {
+    const headerWithToken = new HttpHeaders({
+      "Content-Type": "application/json",
+      authorization: `Bearer ${this.token}`
+    });
+    console.log("Video id's: ", this.videoIds);
+    this.http
+      .get(this.baseNewUrlMusic + this.videoIds, {
+        headers: new HttpHeaders({ "sec-fetch-site": "same-site" })
+      })
+      .toPromise()
+      .then(e => {
+        //this.finalVideos = e;
+        console.log(e);
+      });
   }
 }
