@@ -9,16 +9,38 @@
     <img src="{{ imgGame }}" />
   </div>
 
-  <h1>{{ timer }}</h1>
-  <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+  <h1>Timer: {{ timer }}</h1>
+  <h1>MaxTime: {{ maxTime }}</h1>
+
+  <mat-slider
+    min="0"
+    max="{{ maxTime }}"
+    step="1"
+    value="{{ timer }}"
+  ></mat-slider>
+
+  <div class="time">
+    <p *ngIf="played">
+      {{ currentTime[0] }} : {{ currentTime[1] }} : {{ currentTime[2] }}
+    </p>
+    <p *ngIf="!played">
+      {{ saveCurrentTime[0] }} : {{ saveCurrentTime[1] }} :
+      {{ saveCurrentTime[2] }}
+    </p>
+    <p>{{ totalTime[0] }} : {{ totalTime[1] }} : {{ totalTime[2] }}</p>
+  </div>
+
   <div class="media-buttons">
     <span class="material-icons" (click)="changeSong('previous')">
       skip_previous
     </span>
-    <span class="material-icons" (click)="playSong()">play_circle_outline</span>
-    <!--    <span class="material-icons" (click)="playSong()"
+
+    <span class="material-icons" *ngIf="!played" (click)="playSong()"
+      >play_circle_outline</span
+    >
+    <span class="material-icons" *ngIf="played" (click)="pauseSong()"
       >pause_circle_outline</span
-    > -->
+    >
 
     <span class="material-icons" (click)="changeSong('next')">
       skip_next
