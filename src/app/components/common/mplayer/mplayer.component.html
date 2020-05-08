@@ -9,17 +9,16 @@
     <img src="{{ imgGame }}" />
   </div>
 
-  <h1>Timer: {{ timer }}</h1>
-  <h1>MaxTime: {{ maxTime }}</h1>
-
   <mat-slider
     min="0"
     max="{{ maxTime }}"
     step="1"
-    value="{{ timer }}"
+    value="{{ played ? timer : saveTimer }}"
+    [(ngModel)]="secondSelected"
+    (ngModelChange)="changeSecondSong()"
   ></mat-slider>
 
-  <div class="time">
+  <div class="timeBox">
     <p *ngIf="played">
       {{ currentTime[0] }} : {{ currentTime[1] }} : {{ currentTime[2] }}
     </p>
@@ -27,7 +26,10 @@
       {{ saveCurrentTime[0] }} : {{ saveCurrentTime[1] }} :
       {{ saveCurrentTime[2] }}
     </p>
-    <p>{{ totalTime[0] }} : {{ totalTime[1] }} : {{ totalTime[2] }}</p>
+    <p>
+      {{ totalTime[0] }} : {{ totalTime[1] }} :
+      {{ totalTime[2] }}
+    </p>
   </div>
 
   <div class="media-buttons">

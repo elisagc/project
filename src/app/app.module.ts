@@ -12,7 +12,7 @@ import {
   SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider,
-  LoginOpt
+  LoginOpt,
 } from "angularx-social-login";
 import { PolicyComponent } from "./pages/policy/policy.component";
 import { HeaderComponent } from "./components/common/header/header.component";
@@ -26,7 +26,7 @@ import { MatSliderModule } from "@angular/material/slider";
 // OAUTH
 
 const googleLoginOptions: LoginOpt = {
-  scope: "profile email https://www.googleapis.com/auth/youtube"
+  scope: "profile email https://www.googleapis.com/auth/youtube",
 };
 
 const config = new AuthServiceConfig([
@@ -35,8 +35,8 @@ const config = new AuthServiceConfig([
     provider: new GoogleLoginProvider(
       environment.googleIdClient,
       googleLoginOptions
-    )
-  }
+    ),
+  },
 ]);
 
 export function provideConfig() {
@@ -52,7 +52,7 @@ export function provideConfig() {
     InputComponent,
     PolicyComponent,
     HeaderComponent,
-    MplayerComponent
+    MplayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,17 +64,17 @@ export function provideConfig() {
     YtPlayerAngularModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatSliderModule
+    MatSliderModule,
   ],
 
   // OAUTH
   providers: [
     {
       provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
+      useFactory: provideConfig,
+    },
   ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

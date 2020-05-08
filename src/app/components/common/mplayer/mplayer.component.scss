@@ -7,10 +7,14 @@
   &-img {
     img {
       border-radius: 20px 20px 0 0;
-      height: 400px;
-      width: 400px;
-      object-fit: none;
-      filter: opacity(85%) grayscale(85%);
+      height: 340px;
+      width: 340px;
+      padding: 20px;
+      /* border: 1px solid black; */
+      border-radius: 40px;
+      -webkit-filter: opacity(80%) grayscale(60%);
+      filter: opacity(80%) grayscale(60%);
+      object-fit: contain;
     }
   }
 
@@ -49,4 +53,11 @@
   &-video {
     display: none;
   }
+}
+
+.timeBox {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px 0 10px;
+  font-size: 0.8rem;
 }
