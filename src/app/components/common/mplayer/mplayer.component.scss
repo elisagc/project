@@ -10,11 +10,14 @@
       height: 340px;
       width: 340px;
       padding: 20px;
-      /* border: 1px solid black; */
       border-radius: 40px;
       -webkit-filter: opacity(80%) grayscale(60%);
       filter: opacity(80%) grayscale(60%);
       object-fit: contain;
+
+      @media (max-width: 320px) {
+        width: 100%;
+      }
     }
   }
 
