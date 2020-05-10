@@ -22,7 +22,6 @@ export const words = [
   "Environmental",
   "Eurogame",
   "Expansion",
-  "Exploration",
   "Family Game",
   "Fan Made",
   "Fishing",
@@ -66,5 +65,5 @@ export const words = [
   "Video Game Theme",
   "Wargame",
   "Werewolves",
-  "Word Game"
+  "Word Game",
 ];

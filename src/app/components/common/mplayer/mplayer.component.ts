@@ -1,17 +1,15 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { YtPlayerService, PlayerOptions } from "yt-player-angular";
 import { YoutubeService } from "src/app/services/youtube.service";
-
+import { GameService } from "src/app/services/game.service";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 @Component({
   selector: "app-mplayer",
   templateUrl: "./mplayer.component.html",
   styleUrls: ["./mplayer.component.scss"],
 })
 export class MplayerComponent implements OnInit {
-  constructor(
-    private ytPlayerService: YtPlayerService,
-    private youtubeService: YoutubeService
-  ) {}
+  constructor(private ytPlayerService: YtPlayerService) {}
 
   secondSelected;
   @Input() ids: string[];
@@ -19,34 +17,44 @@ export class MplayerComponent implements OnInit {
   idPlaying: string;
   countSong: number = 0;
   played: boolean = true;
-
   maxTime: number;
   timer: number;
+  saveTimer: number = 0; // si lo inicializo a 0 no se mueve la barra
   totalTime: number[];
   currentTime: number[];
   saveCurrentTime: number[];
-  saveTimer: number;
-
+  ifNaN: boolean = false;
   playerOptions: PlayerOptions = {
     autoplay: true,
   };
 
   ngOnInit(): void {
-    this.youtubeService.getInfoVideo();
+    this.load();
+  }
+
+  load() {
     this.idPlaying = this.ids[0];
 
     this.ytPlayerService.stateChange$.subscribe((state) => {
-      this.timer = state.payload;
-
-      if (!state.payload) {
-        this.timer = this.saveTimer;
+      console.log("TYPE", state.type, " PAYLOAD", state.payload);
+      if (state.type === 3) {
+        this.changeSong("next");
       }
-      state.type === 3 ? this.changeSong("next") : null;
-      this.maxTime = this.ytPlayerService.getDuration();
-      //coge la duración total de la canción. Internar no volver a llamar hasta que haya terminado la canción:
-      this.totalTime = this.setSeconds(this.maxTime);
-      this.currentTime = this.setSeconds(this.timer);
-      this.saveTimer = this.timer;
+
+      if (state.type === 4) {
+        this.maxTime = this.ytPlayerService.getDuration(); // tiempo maximo de la cancion 3215645654567
+        this.totalTime = this.setSeconds(this.maxTime); // seteo los seg 00:05:45;
+      }
+
+      if (state.type === 5) {
+        this.timer = state.payload; // 5645645684 se
+        this.currentTime = this.setSeconds(this.timer); // guardo los segundos según cambian ya seteados
+
+        // guardo el payload porque cuando no se reproduce la canción es NaN
+        this.saveTimer = this.timer;
+      } else if (state.type === 1) {
+        this.changeSong("next");
+      }
     });
   }
 
@@ -56,7 +64,6 @@ export class MplayerComponent implements OnInit {
   }
 
   pauseSong() {
-    this.saveTimer = this.timer;
     this.saveCurrentTime = this.currentTime;
     this.played = !this.played;
     this.ytPlayerService.pause();
@@ -66,7 +73,6 @@ export class MplayerComponent implements OnInit {
     switch (id) {
       case "next":
         this.countSong !== this.ids.length - 1 ? this.countSong++ : null;
-        // console.log("posicion", this.countSong);
         break;
       case "previous":
         this.countSong !== 0 ? this.countSong-- : null;
@@ -82,9 +88,6 @@ export class MplayerComponent implements OnInit {
   }
 
   setSeconds(seconds) {
-    if (!seconds) {
-      console.log("SECONDS EN NANNNNNNNNNN");
-    }
     var hour: string | number = Math.floor(seconds / 3600);
     hour = Math.floor(seconds / 3600) < 10 ? "0" + hour : hour;
     var minute: any = Math.floor((seconds / 60) % 60);
