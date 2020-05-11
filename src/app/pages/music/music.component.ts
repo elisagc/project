@@ -60,19 +60,3 @@ export class MusicComponent implements OnInit {
     this.youtubeService.videoIds = this.idVideos;
   }
 }
-
-/*
-
-  videoIds() {
-    this.idVideos = [];
-    this.music.items.map((video) => {
-      if (video.id.videoId !== undefined) {
-        this.idVideos.push(video.id.videoId);
-      }
-    });
-
-    console.log("id videos", this.idVideos);
-    this.youtubeService.videoIds = this.idVideos;
-  }
-
-  */

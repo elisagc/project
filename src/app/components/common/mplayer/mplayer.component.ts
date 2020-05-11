@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { YtPlayerService, PlayerOptions } from "yt-player-angular";
-import { YoutubeService } from "src/app/services/youtube.service";
-import { GameService } from "src/app/services/game.service";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+
 @Component({
   selector: "app-mplayer",
   templateUrl: "./mplayer.component.html",
@@ -23,7 +21,9 @@ export class MplayerComponent implements OnInit {
   totalTime: number[];
   currentTime: number[];
   saveCurrentTime: number[];
-  ifNaN: boolean = false;
+
+  loaded: boolean = false;
+
   playerOptions: PlayerOptions = {
     autoplay: true,
   };
@@ -37,6 +37,11 @@ export class MplayerComponent implements OnInit {
 
     this.ytPlayerService.stateChange$.subscribe((state) => {
       console.log("TYPE", state.type, " PAYLOAD", state.payload);
+
+      if (state.type === 5 && this.timer > 0) {
+        this.loaded = true;
+      }
+
       if (state.type === 3) {
         this.changeSong("next");
       }

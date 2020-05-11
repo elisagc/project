@@ -64,3 +64,26 @@
   margin: 0 10px 0 10px;
   font-size: 0.8rem;
 }
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.media-controls {
+  height: 150px;
+  padding: 0px 20px;
+}
+.controls {
+  animation: show 1s ease-in;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

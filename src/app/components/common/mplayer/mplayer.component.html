@@ -8,53 +8,66 @@
     <img src="{{ imgGame }}" />
   </div>
 
-  <mat-slider
-    color="primary"
-    min="0"
-    max="{{ maxTime }}"
-    step="1"
-    value="{{ played ? timer : saveTimer }}"
-    [(ngModel)]="secondSelected"
-    (ngModelChange)="changeSecondSong()"
-  ></mat-slider>
+  <div class="media-controls">
+    <div class="spinner" *ngIf="!loaded">
+      <mat-progress-spinner
+        [color]="'primary'"
+        [mode]="'indeterminate'"
+        [diameter]="50"
+      >
+      </mat-progress-spinner>
+    </div>
+    <div class="controls" *ngIf="loaded">
+      <mat-slider
+        style="width: 100%;"
+        color="primary"
+        min="0"
+        max="{{ maxTime }}"
+        step="1"
+        value="{{ played ? timer : saveTimer }}"
+        [(ngModel)]="secondSelected"
+        (ngModelChange)="changeSecondSong()"
+      ></mat-slider>
 
-  <div class="timeBox">
-    <p *ngIf="played">
-      {{ currentTime[0] }} : {{ currentTime[1] }} : {{ currentTime[2] }}
-    </p>
-    <p *ngIf="!played">
-      {{ saveCurrentTime[0] }} : {{ saveCurrentTime[1] }} :
-      {{ saveCurrentTime[2] }}
-    </p>
-    <p>
-      {{ totalTime[0] }} : {{ totalTime[1] }} :
-      {{ totalTime[2] }}
-    </p>
-  </div>
+      <div class="timeBox">
+        <p *ngIf="played">
+          {{ currentTime[0] }} : {{ currentTime[1] }} : {{ currentTime[2] }}
+        </p>
+        <p *ngIf="!played">
+          {{ saveCurrentTime[0] }} : {{ saveCurrentTime[1] }} :
+          {{ saveCurrentTime[2] }}
+        </p>
+        <p>
+          {{ totalTime[0] }} : {{ totalTime[1] }} :
+          {{ totalTime[2] }}
+        </p>
+      </div>
 
-  <div class="media-buttons">
-    <span class="material-icons" (click)="changeSong('previous')">
-      skip_previous
-    </span>
+      <div class="media-buttons">
+        <span class="material-icons" (click)="changeSong('previous')">
+          skip_previous
+        </span>
 
-    <span class="material-icons" *ngIf="!played" (click)="playSong()"
-      >play_circle_outline</span
-    >
-    <span class="material-icons" *ngIf="played" (click)="pauseSong()"
-      >pause_circle_outline</span
-    >
+        <span class="material-icons" *ngIf="!played" (click)="playSong()"
+          >play_circle_outline</span
+        >
+        <span class="material-icons" *ngIf="played" (click)="pauseSong()"
+          >pause_circle_outline</span
+        >
 
-    <span class="material-icons" (click)="changeSong('next')">
-      skip_next
-    </span>
-  </div>
-
-  <div class="media-buttons-2">
-    <span class="material-icons">
-      replay
-    </span>
-    <span class="material-icons">
-      shuffle
-    </span>
+        <span class="material-icons" (click)="changeSong('next')">
+          skip_next
+        </span>
+      </div>
+    </div>
   </div>
 </div>
+
+<!--  <div class="media-buttons-2">
+      <span class="material-icons">
+        replay
+      </span>
+      <span class="material-icons">
+        shuffle
+      </span>
+    </div> -->

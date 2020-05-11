@@ -22,6 +22,7 @@ import { MplayerComponent } from "./components/common/mplayer/mplayer.component"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSliderModule } from "@angular/material/slider";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 // OAUTH
 
@@ -65,6 +66,7 @@ export function provideConfig() {
     BrowserAnimationsModule,
     MatIconModule,
     MatSliderModule,
+    MatProgressSpinnerModule,
   ],
 
   // OAUTH
