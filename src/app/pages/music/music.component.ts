@@ -25,14 +25,9 @@ export class MusicComponent implements OnInit {
 
   ngOnInit(): void {
     this.commonService.changeShowTitle(true);
-
-    if (
-      this.commonService.user === undefined ||
-      this.commonService.user === null
-    ) {
-      this.route.navigateByUrl("");
-    }
-    this.chargeDataApi();
+    !this.commonService.user
+      ? this.route.navigateByUrl("")
+      : this.chargeDataApi();
   }
 
   chargeDataApi() {

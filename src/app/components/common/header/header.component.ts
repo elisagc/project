@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit {
   signOut(): void {
     this.authService.signOut();
     this.router.navigateByUrl("/");
+    alert("Bye! Back soon!");
   }
 
   backHome(): void {
