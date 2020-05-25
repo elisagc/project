@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { MusicComponent } from "./pages/music/music.component";
 import { SearcherComponent } from "./pages/searcher/searcher.component";
 import { FooterComponent } from "./components/common/footer/footer.component";
-import { InputComponent } from "./components/common/input/input.component";
+import { InputComponent } from "./components/input/input.component";
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -18,13 +18,12 @@ import { PolicyComponent } from "./pages/policy/policy.component";
 import { HeaderComponent } from "./components/common/header/header.component";
 import { environment } from "../environments/environment";
 import { YtPlayerAngularModule } from "yt-player-angular";
-import { MplayerComponent } from "./components/common/mplayer/mplayer.component";
+import { MplayerComponent } from "./components/mplayer/mplayer.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-
-// OAUTH
+import { SpinnerComponent } from './components/common/spinner/spinner.component';
 
 const googleLoginOptions: LoginOpt = {
   scope: "profile email https://www.googleapis.com/auth/youtube",
@@ -54,6 +53,7 @@ export function provideConfig() {
     PolicyComponent,
     HeaderComponent,
     MplayerComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +69,6 @@ export function provideConfig() {
     MatProgressSpinnerModule,
   ],
 
-  // OAUTH
   providers: [
     {
       provide: AuthServiceConfig,

@@ -17,9 +17,7 @@ export class YoutubeService {
   constructor(private http: HttpClient, private props: CommonService) {}
 
   getVideosForCategories(categories) {
-    console.log("YOUTUBE CATEGORIAS", categories);
     this.token = this.props.user.authToken;
-    console.log("EL TOKEN ES:", this.token);
     const categoriesSearch = [];
     categories.forEach((category) => {
       if (!words.includes(category.name)) {
@@ -35,7 +33,6 @@ export class YoutubeService {
       "&maxResults=20" +
       "&type=video" +
       "&videoCaption=none";
-    console.log(">>>> ", url);
 
     const headerWithToken = new HttpHeaders({
       "Content-Type": "application/json",

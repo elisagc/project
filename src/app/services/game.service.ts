@@ -30,8 +30,7 @@ export class GameService {
   }
 
   getBoardGamesList(boardGame: string) {
-    // si se deja la cadena vacía saca resultados por eso se pone a undefined
-    if (boardGame === "") {
+    if (!boardGame) {
       boardGame = undefined;
     }
     return this.http

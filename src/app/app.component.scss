@@ -1,7 +1,5 @@
 main {
   font-family: "Quicksand", sans-serif;
-
-  //height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -15,8 +13,4 @@ router-outlet {
 @font-face {
   font-family: DellanaDemo;
   src: url("../assets/fonts/DellanaDemo.ttf");
-}
-
-img {
-  position: absolute;
 }

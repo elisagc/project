@@ -9,19 +9,25 @@ import { YtPlayerService, PlayerOptions } from "yt-player-angular";
 export class MplayerComponent implements OnInit {
   constructor(private ytPlayerService: YtPlayerService) {}
 
-  secondSelected;
   @Input() ids: string[];
   @Input() imgGame: string;
   idPlaying: string;
   countSong: number = 0;
-  played: boolean = true;
+
+  //
   maxTime: number;
+  totalTime: number[];
+
+  //timer 5465465, se guarda en savetimer porque al pausar es Nan
   timer: number;
   saveTimer: number = 0; // si lo inicializo a 0 no se mueve la barra
-  totalTime: number[];
+
+  //tiempo actual en h:m:s, se tiene que guardar para pintar en el dom el tiempo pausado en h:m:s, si no es nan
   currentTime: number[];
   saveCurrentTime: number[];
 
+  secondSelected: number;
+  played: boolean = true;
   loaded: boolean = false;
 
   playerOptions: PlayerOptions = {
@@ -34,10 +40,7 @@ export class MplayerComponent implements OnInit {
 
   load() {
     this.idPlaying = this.ids[0];
-
     this.ytPlayerService.stateChange$.subscribe((state) => {
-      console.log("TYPE", state.type, " PAYLOAD", state.payload);
-
       if (state.type === 5 && this.timer > 0) {
         this.loaded = true;
       }
@@ -48,7 +51,7 @@ export class MplayerComponent implements OnInit {
 
       if (state.type === 4) {
         this.maxTime = this.ytPlayerService.getDuration(); // tiempo maximo de la cancion 3215645654567
-        this.totalTime = this.setSeconds(this.maxTime); // seteo los seg 00:05:45;
+        this.totalTime = this.setSeconds(this.ytPlayerService.getDuration()); // seteo los seg 00:05:45;
       }
 
       if (state.type === 5) {
@@ -93,11 +96,11 @@ export class MplayerComponent implements OnInit {
   }
 
   setSeconds(seconds) {
-    var hour: string | number = Math.floor(seconds / 3600);
-    hour = Math.floor(seconds / 3600) < 10 ? "0" + hour : hour;
-    var minute: any = Math.floor((seconds / 60) % 60);
+    let hour: string | number = Math.floor(seconds / 3600);
+    let minute: string | number = Math.floor((seconds / 60) % 60);
+    let second: any = Math.floor(seconds % 60);
+    hour = hour < 10 ? "0" + hour : hour;
     minute = minute < 10 ? "0" + minute : minute;
-    var second: string | number = Math.trunc(seconds % 60);
     second = second < 10 ? "0" + second : second;
     return [hour, minute, second];
   }

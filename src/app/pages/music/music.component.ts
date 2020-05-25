@@ -39,7 +39,6 @@ export class MusicComponent implements OnInit {
     this.game = this.gameService.getGame();
     this.imgGame = this.game.images["large"];
     this.categories = this.gameService.getCategories();
-    console.log("CATEGORIAS", this.categories);
     this.youtubeService
       .getVideosForCategories(this.categories)
       .then((videos) => {
@@ -55,8 +54,6 @@ export class MusicComponent implements OnInit {
         this.idVideos.push(video.id.videoId);
       }
     });
-
-    console.log("id videos", this.idVideos);
     this.youtubeService.videoIds = this.idVideos;
   }
 }

@@ -10,13 +10,9 @@
 
   <div class="media-controls">
     <div class="spinner" *ngIf="!loaded">
-      <mat-progress-spinner
-        [color]="'primary'"
-        [mode]="'indeterminate'"
-        [diameter]="50"
-      >
-      </mat-progress-spinner>
+      <app-spinner></app-spinner>
     </div>
+
     <div class="controls" *ngIf="loaded">
       <mat-slider
         style="width: 100%;"
@@ -47,14 +43,12 @@
         <span class="material-icons" (click)="changeSong('previous')">
           skip_previous
         </span>
-
         <span class="material-icons" *ngIf="!played" (click)="playSong()"
           >play_circle_outline</span
         >
         <span class="material-icons" *ngIf="played" (click)="pauseSong()"
           >pause_circle_outline</span
         >
-
         <span class="material-icons" (click)="changeSong('next')">
           skip_next
         </span>
@@ -62,12 +56,3 @@
     </div>
   </div>
 </div>
-
-<!--  <div class="media-buttons-2">
-      <span class="material-icons">
-        replay
-      </span>
-      <span class="material-icons">
-        shuffle
-      </span>
-    </div> -->
