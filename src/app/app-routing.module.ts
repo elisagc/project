@@ -7,23 +7,20 @@ import { PolicyComponent } from "./pages/policy/policy.component";
 const routes: Routes = [
   {
     path: "",
-    component: SearcherComponent
+    component: SearcherComponent,
   },
   {
     path: "game-music",
     component: MusicComponent,
-    data: { title: "boardgame music" }
   },
   {
     path: "privacy-policy",
     component: PolicyComponent,
-    data: { title: "privacy-policy" }
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
 export class AppRoutingModule {}

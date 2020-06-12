@@ -56,7 +56,6 @@ export const words = [
   "Resource Management",
   "Roman Empire",
   "Solo / Solitaire",
-  "Superhero",
   "Tech",
   "Territory Building",
   "Theme Park",

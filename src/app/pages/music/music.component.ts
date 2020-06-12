@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
 import { GameService } from "src/app/services/game.service";
 import { YoutubeService } from "./../../services/youtube.service";
 import { CommonService } from "./../../services/common.service";
@@ -10,11 +9,11 @@ import { Router } from "@angular/router";
   styleUrls: ["./music.component.scss"],
 })
 export class MusicComponent implements OnInit {
+  idVideos: string[];
+  imgGame: string;
   game: any = {};
   music: any = [];
-  idVideos: string[];
   categories = [];
-  imgGame: string;
 
   constructor(
     private gameService: GameService,
@@ -31,9 +30,9 @@ export class MusicComponent implements OnInit {
   }
 
   chargeDataApi() {
-    this.game = this.gameService.getGame();
+    this.game = this.gameService.game;
     this.imgGame = this.game.images["large"];
-    this.categories = this.gameService.getCategories();
+    this.categories = this.gameService.categories;
     this.youtubeService
       .getVideosForCategories(this.categories)
       .then((videos) => {

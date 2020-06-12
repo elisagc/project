@@ -2,14 +2,14 @@
   <div class="input">
     <input
       type="text"
-      (input)="getBoardGameList($event)"
       [(ngModel)]="text"
       (ngModelChange)="onText()"
       [ngClass]="inputRadius ? 'radioOff' : 'radioOn'"
+      (input)="getBoardGameList($event)"
       (focus)="onFocus()"
     />
   </div>
-  <div *ngIf="isFocus" class="list">
+  <div class="list">
     <ul>
       <li (click)="selectGame(game)" *ngFor="let game of gameList.games">
         <span>{{ game.name }}</span>

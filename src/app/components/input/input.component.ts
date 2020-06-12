@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
 import { GameService } from "../../services/game.service";
 import { CommonService } from "../../services/common.service";
@@ -9,16 +9,15 @@ import { CommonService } from "../../services/common.service";
 })
 export class InputComponent implements OnInit {
   gameList = [] as any;
-  gameSelected = "";
+  gameSelected: string = "";
   categories = [] as any;
 
-  @Output() ifHaveText: EventEmitter<boolean> = new EventEmitter();
   @Output() ifFocus: EventEmitter<boolean> = new EventEmitter();
 
-  text = "";
-  haveText = false;
-  isFocus = false;
-  inputRadius = true;
+  text: string = "";
+  haveText: boolean = false;
+  isFocus: boolean = false;
+  inputRadius: boolean = true;
 
   constructor(
     private gameService: GameService,
@@ -44,7 +43,7 @@ export class InputComponent implements OnInit {
     !this.commonService.user ? alert("Please, log in") : null;
     this.gameSelected = game;
     this.getCategoriesGame(this.gameSelected);
-    this.gameService.setGame(this.gameSelected);
+    this.gameService.game = this.gameSelected;
     this.router.navigateByUrl("game-music");
   }
 
@@ -56,12 +55,11 @@ export class InputComponent implements OnInit {
         categories.find((category) => category.id === gameCategory.id)
       );
     });
-    this.gameService.setCategories(names);
+    this.gameService.categories = names;
   }
 
   onText() {
     this.text === "" ? (this.haveText = false) : (this.haveText = true);
-    this.ifHaveText.emit(this.haveText);
   }
 
   onFocus() {

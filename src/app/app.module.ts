@@ -12,7 +12,6 @@ import {
   SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider,
-  LoginOpt,
 } from "angularx-social-login";
 import { PolicyComponent } from "./pages/policy/policy.component";
 import { HeaderComponent } from "./components/common/header/header.component";
@@ -23,23 +22,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { SpinnerComponent } from './components/common/spinner/spinner.component';
-
-const googleLoginOptions: LoginOpt = {
-  scope: "profile email https://www.googleapis.com/auth/youtube",
-};
-
-const config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(
-      environment.googleIdClient,
-      googleLoginOptions
-    ),
-  },
-]);
+import { SpinnerComponent } from "./components/common/spinner/spinner.component";
 
 export function provideConfig() {
+  const config = new AuthServiceConfig([
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider(environment.googleIdClient),
+    },
+  ]);
   return config;
 }
 
@@ -68,14 +59,12 @@ export function provideConfig() {
     MatSliderModule,
     MatProgressSpinnerModule,
   ],
-
   providers: [
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig,
     },
   ],
-
   bootstrap: [AppComponent],
 })
 export class AppModule {}

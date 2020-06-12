@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { environment } from "./../../environments/environment";
 import { CommonService } from "../services/common.service";
 import { words } from "../excluded-words";
 
@@ -11,7 +10,6 @@ export class YoutubeService {
   token = "";
   baseUrlMusic: string =
     "https://www.googleapis.com/youtube/v3/search?" + "&part=" + "id";
-
   videoIds: string[];
 
   constructor(private http: HttpClient, private props: CommonService) {}
@@ -32,7 +30,8 @@ export class YoutubeService {
       "+ambient+music+instrumental" +
       "&maxResults=20" +
       "&type=video" +
-      "&videoCaption=none";
+      "&videoCaption=none" +
+      "&videoDuration=medium";
 
     const headerWithToken = new HttpHeaders({
       "Content-Type": "application/json",

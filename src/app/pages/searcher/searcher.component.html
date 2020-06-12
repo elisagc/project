@@ -4,9 +4,6 @@
       Board Games Music
     </h1>
     <h4>Search for a game and get in the mood!</h4>
-    <app-input
-      (ifHaveText)="ifTextReceived($event)"
-      (ifFocus)="ifFocusReceived($event)"
-    ></app-input>
+    <app-input (ifFocus)="ifFocusReceived($event)"></app-input>
   </div>
 </section>

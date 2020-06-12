@@ -11,18 +11,16 @@ export class MplayerComponent implements OnInit {
 
   @Input() ids: string[];
   @Input() imgGame: string;
+
   idPlaying: string;
   countSong: number = 0;
 
-  //
   maxTime: number;
   totalTime: number[];
 
-  //timer 5465465, se guarda en savetimer porque al pausar es Nan
   timer: number;
-  saveTimer: number = 0; // si lo inicializo a 0 no se mueve la barra
+  saveTimer: number;
 
-  //tiempo actual en h:m:s, se tiene que guardar para pintar en el dom el tiempo pausado en h:m:s, si no es nan
   currentTime: number[];
   saveCurrentTime: number[];
 
@@ -44,24 +42,17 @@ export class MplayerComponent implements OnInit {
       if (state.type === 5 && this.timer > 0) {
         this.loaded = true;
       }
-
       if (state.type === 3) {
         this.changeSong("next");
       }
-
       if (state.type === 4) {
-        this.maxTime = this.ytPlayerService.getDuration(); // tiempo maximo de la cancion 3215645654567
-        this.totalTime = this.setSeconds(this.ytPlayerService.getDuration()); // seteo los seg 00:05:45;
+        this.maxTime = this.ytPlayerService.getDuration();
+        this.totalTime = this.setSeconds(this.ytPlayerService.getDuration());
       }
-
       if (state.type === 5) {
-        this.timer = state.payload; // 5645645684 se
-        this.currentTime = this.setSeconds(this.timer); // guardo los segundos según cambian ya seteados
-
-        // guardo el payload porque cuando no se reproduce la canción es NaN
+        this.timer = state.payload;
+        this.currentTime = this.setSeconds(this.timer);
         this.saveTimer = this.timer;
-      } else if (state.type === 1) {
-        this.changeSong("next");
       }
     });
   }
