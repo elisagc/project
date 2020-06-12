@@ -1,4 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/core/theming/all-theme";
+@import "./assets/palette/theme.scss";
+
+@include mat-core();
+
+$iron-app-primary: mat-palette($mat-iron-green);
+$iron-app-accent: mat-palette($mat-iron-green);
+$iron-app-warn: mat-palette($mat-iron-green);
+$iron-app-theme: mat-light-theme(
+  $iron-app-primary,
+  $iron-app-accent,
+  $iron-app-warn
+);
+
+@include angular-material-theme($iron-app-theme);
 
 *,
 *::after,
@@ -30,5 +44,11 @@ body {
   background-blend-mode: soft-light;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
